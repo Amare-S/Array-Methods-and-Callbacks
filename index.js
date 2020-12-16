@@ -24,8 +24,11 @@ Use getFinals to do the following:
 hint - you should be looking at the stage key inside of the objects
 */
 
-function getFinals(/* code here */) {
-   /* code here */
+function getFinals(data) {
+    let getFinals = data.filter(function(stage){
+        return stage["Stage"] === "Final";
+    });
+   return getFinals;
 }
 
 
@@ -36,8 +39,11 @@ Use the higher-order function called getYears to do the following:
 2. Receive a callback function getFinals from task 2 
 3. Return an array called years containing all of the years in the getFinals data set*/
 
-function getYears(/* code here */) {
-    /* code here */
+function getYears(callback) {
+let finalYears = callback.map((years) => {
+    return callback["Year"];
+})
+return finalYears;
 }
 
 
@@ -49,8 +55,15 @@ Use the higher-order function getWinners to do the following:
 3. Determines the winner (home or away) of each `finals` game. 
 4. Returns the names of all winning countries in an array called `winners` */ 
 
-function getWinners(/* code here */) {
-    /* code here */
+function getWinners(data, callback) {
+    let winners = getFinals(data).map(function(callback){
+        if(callback["Home Team Goals"] > callback["Away Team Goals"]){
+            return callback["Home Team Name"];
+        } else if(callback["Home Team Goals"] < callback["Away Team Goals"]){
+            return callback["Away Team Name"];
+        }
+    });
+    return winners;
 }
 
 
@@ -65,8 +78,11 @@ Use the higher-order function getWinnersByYear to do the following:
 hint: the strings returned need to exactly match the string in step 4.
  */
 
-function getWinnersByYear(/* code here */) {
-    /* code here */
+function getWinnersByYear(array, getYears, getWinners) {
+    let winners = getWinners(arr).map(function(item, index){
+        return `In ${getYears}, ${item} won the world cup!`;
+    })
+    return winners;
 }
 
 
@@ -81,7 +97,7 @@ Use the higher order function getAverageGoals to do the following:
  Example of invocation: getAverageGoals(getFinals(fifaData));
 */
 
-function getAverageGoals(/* code here */) {
+function getAverageGoals(callback) {
    /* code here */
 }
 
